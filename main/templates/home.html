@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<style>
+    body {
+        margin: 0; /* Remove margens padrão do body */
+        font-family: Arial, sans-serif; /* Define uma fonte padrão */
+    }
+
+    .square {
+        width: 80px;
+        height: 80px;
+        background-color: black;
+        text-align: center;
+        line-height: 2.8vh;
+        font-size: 2vh; /* Ajuste conforme necessário */
+        color: white;
+        margin-bottom: 1.8vh; /* Espaço entre os quadrados */
+        border-radius: 1.8vh; /* Arredonda as bordas */
+    }
+
+    .container {
+      position: fixed; /* Posição relativa ao contêiner pai */
+      top: 50%; /* Centraliza verticalmente */
+      left: 92%; /* Distância da direita */
+      transform: translateY(-50%); /* Ajusta para a centralização exata */
+    }
+
+    /* Estilos adicionais para o cabeçalho e outros elementos */
+    .header {
+        text-align: center;
+        font-weight: 800;
+        font-size: 6vh; /* Ajuste conforme necessário */
+        margin-bottom: 1.8vh;
+    }
+
+    .welcome-text {
+        text-align: center;
+        font-size: 3vh; /* Ajuste conforme necessário */
+        margin-bottom: 5vh;
+    }
+</style>
+</head>
+<body>
+{% if user.last_name %}
+    <div class="flex items-center justify-center">
+        <div class="flex justify-center">
+            <img src="{% static 'images/doc.png' %}" alt="logo" style="width: 70vh; height: 70vh; margin-top: 10vh;" class='mr-4'>
+        </div>
+        <div class="flex flex-col justify-center items-center p-8 w-1/2">
+            <div class="flex flex-col justify-center">
+                <h1 class="header">Central de Chamados</h1>
+                <p class="welcome-text">Bem vindo!</p>
+            </div>
+            <div class="container">
+                <div class="square">
+                    <h2 style="font-size: 1.6vh; margin-bottom: 0.5vh;">Todos <br> os chamados</h2>
+                    <span>{{ todos_os_chamados }}</span>
+                </div>
+                <div class="square">
+                    <h2 style="font-size: 1.6vh; margin-bottom: 0.5vh;">Chamados Abertos</h2>
+                    <span>{{ chamados_abertos }}</span>
+                </div>
+                <div class="square">
+                    <h2 style="font-size: 1.6vh; margin-bottom: 0.5vh;">Chamados Finalizados</h2>
+                    <span>{{ chamados_finalizados }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+        <div class="flex items-center justify-center">
+            <div class="flex  justify-center">
+                <img src="{% static 'images/doc.png' %}" alt="HNL logo" style="width: 80vh; height: 70vh; margin-top: 10vh;" class='mr-4'>
+            </div>
+            <div class="flex flex-col justify-center items-center p-8 w-1/2 " style="h-full;">
+                <div class="flex flex-col justify-center ">
+                    <p class="text-black" style="font-size: 4vh">Essa conta ainda não está pronta, entre em contato com a T.I!</p>
+                </div>
+                <div class="flex justify-center items-center mt-8">
+                    <label style="font-weight: 500;" class=" p-4 text-white rounded bg-black hover:bg-teal-500"> 
+                        <a href="https://wa.me/+558394126428" class="text-white">Entrar em Contato com a TI</a>
+                    </label>
+                </div>
+            </div>
+
+                </div>
+        </div>
+    {% endif %}
+{% endblock content %}
